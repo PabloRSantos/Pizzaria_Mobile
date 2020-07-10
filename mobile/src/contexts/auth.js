@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext} from "react"
 import api from "../services/api"
-import {AsyncStorage} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage'
 
 
 const AuthContext = createContext({})
@@ -9,13 +9,13 @@ export const AuthProvider = ({children}) => {
 
     const [user, setUser] = useState(false)
     const [loading, setLoading] = useState(true)
-    const [modal, setModal] = useState(true)
 
     useEffect(() => {
         async function loadStoragedData(){
 
            const storagedUser = await AsyncStorage.getItem("manjeriId")
            const storagedToken = await AsyncStorage.getItem("manjeriToken")
+
 
            if(storagedUser && storagedToken) {
                setUser(true)
@@ -55,14 +55,15 @@ export const AuthProvider = ({children}) => {
             return data.error
         }
 
-
-
         setUser(true)
 
         api.defaults.headers["authorization"] = `Bearer ${data.token}`
 
-        await AsyncStorage.setItem("manjeriId", data.id)
-        await AsyncStorage.setItem("manjeriToken", data.token)
+        const a = await AsyncStorage.setItem("manjeriId", data.id)
+        const b = await AsyncStorage.setItem("manjeriToken", data.token)
+
+        console.log(a)
+        console.log(b)
      
     }
 

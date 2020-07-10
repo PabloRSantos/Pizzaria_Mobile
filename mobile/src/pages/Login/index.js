@@ -5,7 +5,7 @@ import {useAuth} from "../../contexts/auth"
 
 import {Main, Input, Button, TextButton, Text, Imagem} from "./style"
 
-import imagem from "../../assets/logoVerde.png"
+import imagem from "../../../assets/logo.png"
 import Modal from "../../components/Modal"
 
 const Login = () => {
@@ -15,7 +15,7 @@ const Login = () => {
     const [modal, setModal] = useState(false)
     const [msgErro, setMsgErro] = useState("")
 
-    const {signed, SignIn} = useAuth()
+    const {SignIn} = useAuth()
 
     const navigation = useNavigation()
 

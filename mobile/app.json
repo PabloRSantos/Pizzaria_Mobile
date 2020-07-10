@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/logo.png",
     "splash": {
-      "image": "./assets/logo.png",
+      "image": "./assets/splash.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#008577"
     },
@@ -22,6 +22,9 @@
     },
     "web": {
       "favicon": "./assets/logo.png"
+    },
+    "android": {
+      "package": "com.swell.manjericao"
     },
     "packagerOpts": {
       "config": "metro.config.js",
