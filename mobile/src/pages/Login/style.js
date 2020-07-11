@@ -4,14 +4,14 @@ export const Main = styled.View`
     flex: 1;
     align-items: center;
     justify-content: center;
-    
-    padding: 0 15px;
+    background-color: #008577;
+    padding: 0 30px;
 `
 
 
 
 export const Imagem = styled.Image`
-
+    
 `
 
 export const Input = styled.TextInput`
@@ -20,7 +20,7 @@ export const Input = styled.TextInput`
 
      padding: 7px 10px;
      margin: 5px;
-     width: 250px;
+     width: 100%;
 
      elevation: 3;
      
@@ -28,17 +28,17 @@ export const Input = styled.TextInput`
 `
 
 export const Button = styled.TouchableOpacity`
-    background-color: #008577;
+    background-color: white;
 
     margin: 5px;
     padding: 10px;
 
-    width: 250px;
+    width: 100%;
     border-radius: 10px;
 `
 
 export const TextButton = styled.Text`
-    color: white;
+    color: #008577;
 
     text-align: center;
     font-family: "Roboto_700Bold";
@@ -46,7 +46,7 @@ export const TextButton = styled.Text`
 `
 
 export const Text = styled.Text`
-    color: rgba(0, 0, 0, 0.5);
+    color: white;
     font-family: "Roboto_400Regular";
     font-size: 13px;
     

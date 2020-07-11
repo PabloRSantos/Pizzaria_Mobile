@@ -30,10 +30,6 @@ const Products = (props) => {
         .then(response => {
             if (!isCancelled) {
                 setProducts(response.data.products)
-
-                if(products.length === 0) {
-                    setTitulo("Nenhum produto encontrado")
-                }
  
                 if(props.titulo)
                 return setTitulo(`"${props.titulo}"`)
@@ -74,33 +70,39 @@ const Products = (props) => {
         <Main>
         
         <Titulo>{titulo || "Carrinho"}</Titulo>
-
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            {products.map(product => (
-                <Content key={product.carrinho_id || product.id}>
-
-                <DivImagem>
-                    <Imagem
-                    resizeMode="cover"
-                    source={{uri: `https://manjeri-backend.herokuapp.com//uploads/products/${product.imagem}`}}/>
-                </DivImagem>
-
-                <Infos>
-                    <Nome>{product.produto}</Nome>
-                    <Preco>R${product.preco}</Preco>
-                    <Button onPress={props.page ? () => removeCar(product.id) : () => addCar(product.id)}>
-
-                        {props.page !== "carrinho" ? (
-                        <IconAwesome name="cart-plus" size={20} color="white"/>
-                        ) : (
-                        <IconMaterial name="remove-shopping-cart" size={20} color="white"/>
-                        )}
-                    </Button>
-                </Infos>
-
-                </Content>
-            ))}
-        </ScrollView>
+            
+            {products.length > 0 ? (
+                   <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                    {products.map(product => (
+                        <Content key={product.carrinho_id || product.id}>
+        
+                        <DivImagem>
+                            <Imagem
+                            resizeMode="cover"
+                            source={{uri: `http://10.0.0.107:3333/uploads/products/${product.imagem}`}}/>
+                        </DivImagem>
+        
+                        <Infos>
+                            <Nome>{product.produto}</Nome>
+                            <Preco>R${product.preco}</Preco>
+                            <Button onPress={props.page ? () => removeCar(product.id) : () => addCar(product.id)}>
+        
+                                {props.page !== "carrinho" ? (
+                                <IconAwesome name="cart-plus" size={20} color="white"/>
+                                ) : (
+                                <IconMaterial name="remove-shopping-cart" size={20} color="white"/>
+                                )}
+                            </Button>
+                        </Infos>
+        
+                        </Content>
+                    
+                    ))}
+                </ScrollView>
+            ) : (
+                <Nome style={{marginLeft: 20}}>Nenhum Produto Encontado</Nome>
+            )}
+          
         </Main>
     )
 

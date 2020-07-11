@@ -18,7 +18,10 @@ const AuthRoutes = () => (
         <AuthStack.Navigator headerMode="none" screenOptions={{
                 cardStyle: {
                     backgroundColor: "white"
-                }
+                },
+            
+                
+        
             }}>
             <AuthStack.Screen name="Home" component={Home}/>
             <AuthStack.Screen name="Carrinho" component={Carrinho}/>
