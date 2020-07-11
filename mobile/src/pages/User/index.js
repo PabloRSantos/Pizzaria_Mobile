@@ -27,7 +27,7 @@ const Profile = () => {
         <Main>
 
             <ContentImg>
-                <ProfilePic resizeMode="cover" source={{uri: `http://10.0.0.107:3333/uploads/user/default.jpg`}}/>
+                <ProfilePic resizeMode="cover" source={{uri: `https://manjeri-backend.herokuapp.com//uploads/user/default.jpg`}}/>
             </ContentImg>
 
 

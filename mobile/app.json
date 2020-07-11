@@ -20,6 +20,9 @@
     "ios": {
       "supportsTablet": true
     },
+    "android": {
+      "package": "com.swell.manjericao"
+    },
     "web": {
       "favicon": "./assets/logo.png"
     },

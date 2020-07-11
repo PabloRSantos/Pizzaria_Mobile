@@ -82,7 +82,7 @@ const Products = (props) => {
                 <DivImagem>
                     <Imagem
                     resizeMode="cover"
-                    source={{uri: `http://10.0.0.107:3333/uploads/products/${product.imagem}`}}/>
+                    source={{uri: `https://manjeri-backend.herokuapp.com//uploads/products/${product.imagem}`}}/>
                 </DivImagem>
 
                 <Infos>
