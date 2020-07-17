@@ -19,7 +19,7 @@ export const AuthProvider = ({children}) => {
 
            if(storagedUser && storagedToken) {
                setUser(true)
-              api.defaults.headers["Authorization"] = `Bearer ${storagedToken}`
+              api.defaults.headers["authorization"] = `Bearer ${storagedToken}`
            }
 
            setLoading(false)
@@ -32,6 +32,8 @@ export const AuthProvider = ({children}) => {
     async function SignUp(form){
 
        const {data} = await api.post("/cadastro", form)
+
+       console.log(data)
 
 
        if(data.error) {
@@ -50,6 +52,8 @@ export const AuthProvider = ({children}) => {
     async function SignIn(form){
 
         const {data} = await api.post("/login", form)
+
+        console.log(data)
         
         if(data.error) {
             return data.error

@@ -68,6 +68,8 @@ const Cadastro = () => {
          const location = await Location.getCurrentPositionAsync()
   
          const {latitude, longitude} = location.coords
+
+         console.log(latitude)
   
          setInitialPosition([
            latitude,
