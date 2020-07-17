@@ -18,6 +18,7 @@ export const AuthProvider = ({children}) => {
 
 
            if(storagedUser && storagedToken) {
+               console.log(storagedToken)
                setUser(true)
               api.defaults.headers["Authorization"] = `Bearer ${storagedToken}`
            }
@@ -38,12 +39,14 @@ export const AuthProvider = ({children}) => {
             return data.error
        }
 
-            api.defaults.headers["authorization"] = `Bearer ${data.token}`
+            api.defaults.headers["Authorization"] = `Bearer ${data.token}`
 
             setUser(true)
 
            await AsyncStorage.setItem("manjeriId", data.id)
            await AsyncStorage.setItem("manjeriToken", data.token)
+
+           console.log("cadastro")
 
     }
 
@@ -57,11 +60,12 @@ export const AuthProvider = ({children}) => {
 
         setUser(true)
 
-        api.defaults.headers["authorization"] = `Bearer ${data.token}`
+        api.defaults.headers["Authorization"] = `Bearer ${data.token}`
 
         const a = await AsyncStorage.setItem("manjeriId", data.id)
         const b = await AsyncStorage.setItem("manjeriToken", data.token)
 
+        console.log("login")
         console.log(a)
         console.log(b)
      

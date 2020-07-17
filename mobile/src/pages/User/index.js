@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import AsyncStorage from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 import api from "../../services/api"
@@ -30,7 +30,7 @@ const Profile = () => {
         api.get("/user")
         .then(response => {
             setUserDados(response.data.user)
-            
+            console.log(response.data.user)
         })
         .catch((err) => console.log(err))
 

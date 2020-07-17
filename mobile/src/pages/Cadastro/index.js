@@ -21,7 +21,7 @@ const Cadastro = () => {
     const [emailUser, setEmailUser] = useState("")
     const [modal, setModal] = useState(false)
     const [msgErro, setMsgErro] = useState("")
-    const [initialPosition, setInitialPosition] = useState([0, 0])
+    const [initialPosition, setInitialPosition] = useState([])
     const [newPin, setNewPin] = useState([])
 
     const {SignUp} = useAuth()
