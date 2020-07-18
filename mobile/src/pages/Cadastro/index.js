@@ -68,8 +68,6 @@ const Cadastro = () => {
          const location = await Location.getCurrentPositionAsync()
   
          const {latitude, longitude} = location.coords
-
-         console.log(latitude)
   
          setInitialPosition([
            latitude,
@@ -144,9 +142,9 @@ const Cadastro = () => {
             onChangeText={text => setCelUser(text)}
             />
        
-
-            <TextMap>Seu Endereço:</TextMap>
-            <ContentMap>
+             <TextMap>Seu Endereço:</TextMap>
+            {initialPosition[0] !== 0 && (
+                <ContentMap>
                 <Mapa
                     onPress={e => createPin(e)}
                     initialRegion={{
@@ -171,7 +169,8 @@ const Cadastro = () => {
                    
                 </Mapa>
             </ContentMap>
-
+            )}
+            
 
             <Button onPress={submitForm}>
                 <TextButton>Confirmar Cadastro</TextButton>

@@ -33,19 +33,19 @@ export const AuthProvider = ({children}) => {
 
        const {data} = await api.post("/cadastro", form)
 
-       console.log(data)
 
 
        if(data.error) {
             return data.error
        }
 
-            api.defaults.headers["authorization"] = `Bearer ${data.token}`
+            api.defaults.headers["Authorization"] = `Bearer ${data.token}`
 
             setUser(true)
 
            await AsyncStorage.setItem("manjeriId", data.id)
            await AsyncStorage.setItem("manjeriToken", data.token)
+
 
     }
 
@@ -53,7 +53,6 @@ export const AuthProvider = ({children}) => {
 
         const {data} = await api.post("/login", form)
 
-        console.log(data)
         
         if(data.error) {
             return data.error
@@ -61,13 +60,12 @@ export const AuthProvider = ({children}) => {
 
         setUser(true)
 
-        api.defaults.headers["authorization"] = `Bearer ${data.token}`
+        api.defaults.headers["Authorization"] = `Bearer ${data.token}`
 
         const a = await AsyncStorage.setItem("manjeriId", data.id)
         const b = await AsyncStorage.setItem("manjeriToken", data.token)
 
-        console.log(a)
-        console.log(b)
+       
      
     }
 

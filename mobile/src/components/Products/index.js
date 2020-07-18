@@ -39,7 +39,6 @@ const Products = (props) => {
              })
 
     if(products.length === 0) {
-        console.log(products)
         return (
             <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
                 <ActivityIndicator size="large" color="black"/>
@@ -70,8 +69,6 @@ const Products = (props) => {
         <Main>
         
         <Titulo>{titulo || "Carrinho"}</Titulo>
-
-      
             
             {products.length > 0 ? (
                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
@@ -81,7 +78,7 @@ const Products = (props) => {
                         <DivImagem>
                             <Imagem
                             resizeMode="cover"
-                            source={{uri: `http://10.0.0.107:3333/uploads/products/${product.imagem}`}}/>
+                            source={{uri: `https://manjeri-backend.herokuapp.com/uploads/products/${product.imagem}`}}/>
                         </DivImagem>
         
                         <Infos>
