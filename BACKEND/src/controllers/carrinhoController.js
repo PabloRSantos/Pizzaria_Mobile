@@ -30,16 +30,11 @@ exports.addCarrinho = async (req, res) => {
 
     const products = await knex("carrinho")
     .join("products", "products.id", "=", "carrinho.product_id")
-    .where("carrinho.user_id", req.userId)
+    .where({user_id: req.userId, enviado: 0})
 
     if(products.length === 0) {
       return res.json({message: "Nenhum produto encontrado"})
     }
-
-   if(products[0].enviado === 1) {
-     return res.json({error: "Aguarde seu pedido ser efetuado para adicionar produtos ao carrinho"})
-   }
-
 
     return res.json(products)
   }

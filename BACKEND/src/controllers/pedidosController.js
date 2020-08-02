@@ -10,6 +10,13 @@ exports.index = async (req, res) => {
 exports.create = async (req, res) => {
     const userId = req.userId
 
+    const products = await knex("carrinho")
+    .join("products", "products.id", "=", "carrinho.product_id")
+    .where({user_id: req.userId, enviado: 1})
+
+    if(products.length > 0) {
+        return res.json({error: "Você deve aguardar seu primeiro pedido ser finalizado"})
+    }
 
     await knex("pedidos").insert({user_id: userId})
 
@@ -36,9 +43,6 @@ exports.show = async(req, res) => {
 exports.delete = async(req, res) => {
     const {pedidoId} = req.query
     const userId = await knex("pedidos").where("id", pedidoId).del().returning("user_id")
-
-    console.log(userId[0])
-
 
     await knex("carrinho").where({user_id: userId[0], enviado: 1}).del()
 
