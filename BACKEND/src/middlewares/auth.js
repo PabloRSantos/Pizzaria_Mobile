@@ -4,8 +4,6 @@ module.exports = (req, res, next) => {
     const authHeader = req.headers.authorization
     const auth = process.env.JWT_AUTH 
 
-    console.log(req.headers.authorization)
-
     if(!authHeader)
         return res.json({message: "Token não informado"})
 

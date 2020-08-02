@@ -2,8 +2,6 @@ const knex = require("../database/connections")
 
 exports.addCarrinho = async (req, res) => {
 
-      console.log(req.body)
-
       req.body.user_id = req.userId
 
       await knex("carrinho").insert(req.body)
@@ -13,14 +11,17 @@ exports.addCarrinho = async (req, res) => {
 
   exports.removeCarrinho = async (req, res) => {
       
-      const {product_id} = req.query
+      const product_id = req.query.product_id.split(",")
       const user_id = req.userId
 
       let dados = await knex("carrinho")
-      .where({user_id: user_id, product_id: product_id})
-      .select("carrinho_id").first()
-  
-      await knex("carrinho").where(dados).del()
+      .where("user_id", user_id)
+      .whereIn("product_id", product_id)
+      .select("carrinho_id")
+
+      dados = dados.map(dado => dado.carrinho_id)
+
+      await knex("carrinho").whereIn("carrinho_id", dados).del()
 
       return res.json({success: "Excluido com sucesso"})
   }

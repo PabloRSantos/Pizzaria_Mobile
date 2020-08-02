@@ -30,7 +30,7 @@ rota.put("/products", authMiddleware, productsController.update)
 
 
 
-rota.get("/users", usersController.index)
+
 
 rota.post("/login", usersController.login)
 

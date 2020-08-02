@@ -14,12 +14,6 @@ function generateToken (params = {}){
     })
 }
 
-exports.index = async(req, res) => {
-    const user = await knex("users").select()
-
-    res.json(user)
-}
-
 exports.cadastro = async (req, res) => {
 
     const users = await knex("users").select("celular", "email").where("celular", req.body.celular).first()
@@ -36,9 +30,9 @@ exports.cadastro = async (req, res) => {
     const hash = await bcrypt.hash(req.body.senha, 10)
     req.body.senha = hash
 
-    let { nome, senha, celular, email, endereco} = req.body
+    let { nome, senha, celular, email, latitude, longitude} = req.body
 
-    const user = await knex("users").insert({nome, senha, celular, endereco, email}).returning("id")
+    const user = await knex("users").insert({nome, senha, celular, latitude, longitude, email}).returning("id")
     
         return res.json({
             sucess: "Cadastrado com sucesso", 
@@ -49,7 +43,7 @@ exports.cadastro = async (req, res) => {
 }
 
 exports.login = async(req, res) => {
-    
+
     const user = await knex("users").first().select("*").where({
         email: req.body.email,
     })
@@ -71,22 +65,10 @@ exports.login = async(req, res) => {
 
 }
 
-exports.vendas = async(req, res) => {
-    const products = knex("products").where("user_id", req.query.user).select("*")
-
-    if(!products) {
-        return res.status(404).json({message: "Nenhum produto encontrado"})
-    }
-
-    return res.json(products)
-}
-
 exports.perfil = async(req, res) => {
     
-
     const user = await knex("users").where("id", req.userId).select("*").first()
 
-    console.log(user)
 
     if(!user) {
         return res.json({error: "Erro no token"})
