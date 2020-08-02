@@ -4,6 +4,7 @@ const productsController = require("./controllers/productsController")
 const categoriasController = require("./controllers/categoriasController")
 const usersController = require("./controllers/usersController")
 const carrinhoController = require("./controllers/carrinhoController")
+const pedidosController = require("./controllers/pedidosController")
 
 const authMiddleware = require("./middlewares/auth")
 const multer = require("multer")
@@ -47,6 +48,16 @@ rota.get("/carrinho",  authMiddleware, carrinhoController.showProducts)
 rota.post("/carrinho", authMiddleware, carrinhoController.addCarrinho)
 
 rota.delete("/carrinho", authMiddleware, carrinhoController.removeCarrinho)
+
+
+rota.get("/pedidos",  authMiddleware, pedidosController.index)
+
+rota.get("/pedido",  authMiddleware, pedidosController.show)
+
+rota.post("/pedido", authMiddleware, pedidosController.create)
+
+rota.delete("/pedido", authMiddleware, pedidosController.delete)
+
 
 module.exports = rota
 

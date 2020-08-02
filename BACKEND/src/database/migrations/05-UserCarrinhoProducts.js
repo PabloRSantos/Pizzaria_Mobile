@@ -3,6 +3,7 @@
  async function up(knex){
     return knex.schema.createTable("carrinho", table => {
         table.increments("carrinho_id").primary()
+        table.integer("enviado").defaultTo(0)
 
         table.integer("product_id")
         .notNullable()
