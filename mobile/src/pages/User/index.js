@@ -36,6 +36,7 @@ const Profile = () => {
                     <Text>Nome: {userDados.nome}</Text>
                     <Text>Email: {userDados.email}</Text>
                     <Text>Celular: {userDados.celular}</Text>
+                    <Text>Endereço:</Text>
                 </ContentTexts>
 
             {userDados.nome && (

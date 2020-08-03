@@ -23,7 +23,7 @@ export const ProfilePic = styled.Image`
 
 export const ContentInfos = styled.View`
 
-    padding: 0 16px;
+    padding: 8px 16px;
     width: 100%;
     margin: 0 0 12px;
     border-radius: 12px;

@@ -9,63 +9,41 @@ import api from "../../services/api"
 
 import {Titulo, Content, DivImagem, Imagem, Infos, Nome, Preco, Button, Main, Loading} from "./style"
 import { ScrollView } from "react-native-gesture-handler"
-import Modal from "../../components/Modal"
 
 const Products = (props) => {
 
     const [products, setProducts] = useState([])
     const [titulo, setTitulo] = useState("")
-    const [isCancelled, setIsCancelled] = useState()
-    const [modal, setModal] = useState(false)
-    const [msgModal, setMsgModal] = useState("")
+    const [isCancelled, setIsCancelled] = useState(false)
 
 
-    useEffect(() => {
-        if(props.buyCondition === true) {
-
-            sendProducts()
-
-            setModal(false)
-            setMsgModal("Pedido Enviado com sucesso!")
-
-            setTimeout(() => {
-                setModal(true)
-            }, 200)
-        } 
-
-    }, [props.buyCondition])
 
     useEffect(() => {
+        
+        getProducts()
 
-       getProducts()
+    }, [props.buyCondition, props.titulo, ])
 
-    }, [])
 
-    function sendProducts(){
-       let ids = products.map(product => product.id).toString()
-
-       removeCar(ids)
-
-    }
-
-    function getProducts(){
+    async function getProducts(){
+        
         setIsCancelled(false)
 
-        api.get(`${props.url}`)
-        .then(response => {
-            if (!isCancelled) {
+        const {data} = await api.get(`${props.url}`)
+
 
                 setIsCancelled(true)
-                setProducts(response.data.products)
- 
+                setProducts(data.products)
+
                 if(props.titulo)
-                return setTitulo(`${props.titulo}`)
+                return setTitulo(props.titulo)
 
-                setTitulo(response.data.products[0].categoria)
-            } 
+                if(data.products.length > 0)
+                return setTitulo(data.products[0].categoria)
 
-             })
-             .catch(() => setIsCancelled(true))
+                setTitulo("Ooops")
+
+
     }
 
     async function addCar(id){
@@ -85,7 +63,6 @@ const Products = (props) => {
     return (
         <Main>
         
-        <Modal visible={modal} txt={msgModal}/>
 
         {isCancelled === false ? (
             <Loading>

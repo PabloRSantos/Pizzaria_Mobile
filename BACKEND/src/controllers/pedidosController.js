@@ -15,7 +15,7 @@ exports.create = async (req, res) => {
     .where({user_id: req.userId, enviado: 1})
 
     if(products.length > 0) {
-        return res.json({error: "Você deve aguardar seu primeiro pedido ser finalizado"})
+        return res.json({error: "Você deve primeiro aguardar seu pedido anterior ser finalizado"})
     }
 
     await knex("pedidos").insert({user_id: userId})
@@ -23,7 +23,7 @@ exports.create = async (req, res) => {
     await knex("carrinho")
     .where("user_id", userId).update("enviado", 1)
 
-    res.json({message: "Enviado com sucesos"})
+    res.json({message: "Enviado com sucesso"})
 }
 
 exports.show = async(req, res) => {
@@ -34,9 +34,17 @@ exports.show = async(req, res) => {
     .join("carrinho", "carrinho.user_id", "=", "pedidos.user_id")
     .join("products", "products.id", "=", "carrinho.product_id")
     .where("carrinho.user_id", userId)
-    .select("pedidos.user_id", "pedidos.created_at", "products.*")
+    .select("pedidos.created_at", "products.*")
 
-    res.json(pedido)
+    const user = await knex("users").where("id", userId)
+    .select("id",
+     "nome",
+     "latitude",
+     "longitude",
+     "celular",
+     "foto")
+
+    res.json({pedido, user})
 
 }
 

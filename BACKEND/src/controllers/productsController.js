@@ -7,7 +7,7 @@ const path = require("path")
         if(req.query.pesquisa){
 
             const limit = req.query.limit || 50
-            const page = req.query.page
+            const page = req.query.page || 1
 
             const skip = (page - 1) * limit
 

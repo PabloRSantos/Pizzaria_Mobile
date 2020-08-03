@@ -21,9 +21,7 @@ export const Main = styled.View`
 `
 
 export const Imagem = styled.Image`
-    width: 220px;
-    height: 90px;
-    margin: 0 0 20px;
+height: 130px;
 `
 
 export const Input = styled.TextInput`
