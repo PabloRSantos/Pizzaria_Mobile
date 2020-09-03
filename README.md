@@ -10,16 +10,6 @@
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/PabloRSantos/Pizzaria_Mobile?color=0080000">
 </p>
 
-> :rocket: Projeto feito para um restaurante fictício de pizza
-
-
-<div align="center">
-  <p>feito com ❤︎ por
-    <a href="https://github.com/PabloRSantos">Pablo Rosa</a>
-  </p>
-</div>
-
-
 # :pushpin: Índice
 
 - [Sobre](#sobre)
